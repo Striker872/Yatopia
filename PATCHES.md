@@ -8,6 +8,7 @@ This is an overview over all patches that are currently used.
 
 | Side | Patch        | Author           | CoAuthors  |
 | ----- | ------------- |:-------------:| -----:|
+| server |  (PaperPR) Inline shift direction fields      | Andrew Steinborn |  |
 | server |  AFK API      | William Blake Galbreath |  |
 | api |  AFK API      | William Blake Galbreath |  |
 | server |  Ability to re-add farmland mechanics from Alpha      | Yive |  |
@@ -235,6 +236,7 @@ This is an overview over all patches that are currently used.
 | server |  Movement options for armour stands      | Mariell Hoversholm |  |
 | server |  Multi-Threaded Server Ticking Vanilla      | Spottedleaf |  |
 | server |  Multi-Threaded ticking CraftBukkit      | Spottedleaf |  |
+| server |  Multi-threaded RegionFile IO      | ishland |  |
 | server |  Name craft scheduler threads according to the plugin using      | Spottedleaf |  |
 | server |  New nbt cache      | Hugo Planque | ishland |
 | server |  Nuke streams off BlockPosition      | Ivan Pekov |  |
@@ -340,6 +342,7 @@ This is an overview over all patches that are currently used.
 | server |  Suspected plugins report      | ishland |  |
 | api |  Suspected plugins report      | ishland |  |
 | server |  Swap priority of checks in chunk ticking      | Paul Sauve |  |
+| server |  Threaded WorldGen      | ishland |  |
 | server |  Time scoreboard search      | Spottedleaf |  |
 | server |  Timings stuff      | William Blake Galbreath |  |
 | server |  Toggle for Zombified Piglin death always counting as player      | jmp |  |
@@ -364,6 +367,7 @@ This is an overview over all patches that are currently used.
 | server |  Zombie horse naturally spawn      | William Blake Galbreath |  |
 | server |  add config for logging login location      | Simon Gardling |  |
 | server |  dont load chunks for physics      | Aikar |  |
+| server |  fixup! Threaded WorldGen      | ishland |  |
 | server |  lithium DataTrackerMixin      | JellySquid | tr7zw |
 | server |  lithium HashedList      | JellySquid |  |
 | server |  lithium MixinBox      | JellySquid |  |
