@@ -239,6 +239,7 @@ This is an overview over all patches that are currently used.
 | server |  New nbt cache      | Hugo Planque | ishland |
 | server |  Nuke streams off BlockPosition      | Ivan Pekov |  |
 | server |  Nuke streams off SectionPosition      | Ivan Pekov |  |
+| api |  Optimise Bukkit&#39;s MapPalette      | epserv |  |
 | server |  Optimise EntityInsentient#checkDespawn      | Spottedleaf |  |
 | server |  Optimise WorldServer#notify      | Spottedleaf |  |
 | server |  Optimise chunk tick iteration      | Spottedleaf |  |
