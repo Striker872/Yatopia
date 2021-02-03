@@ -183,10 +183,10 @@ index 7abf0e4b7e96dd367b9d03cbc62ac7bb03542d0a..76a76c26650bca73828d7893a537a023
          return i == j ? true : GenLayers.a.get(i) == GenLayers.a.get(j);
      }
 diff --git a/src/main/java/net/minecraft/server/MinecraftServer.java b/src/main/java/net/minecraft/server/MinecraftServer.java
-index e6a23b2cf343f1e58d9de030525aba9f9f5f959b..e2b4a92fe3bf7c50c802112d4ed504f01b52c81f 100644
+index e358e797c87584891d1ffbaf3604c5db6768ca58..5b9e665938d45cea7cf6d18f577a05c663f03754 100644
 --- a/src/main/java/net/minecraft/server/MinecraftServer.java
 +++ b/src/main/java/net/minecraft/server/MinecraftServer.java
-@@ -835,6 +835,8 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
+@@ -836,6 +836,8 @@ public abstract class MinecraftServer extends IAsyncTaskHandlerReentrant<TickTas
          // Spigot end
          // Paper start - move final shutdown items here
          LOGGER.info("Flushing Chunk IO");
@@ -196,7 +196,7 @@ index e6a23b2cf343f1e58d9de030525aba9f9f5f959b..e2b4a92fe3bf7c50c802112d4ed504f0
          LOGGER.info("Closing Thread Pool");
          SystemUtils.shutdownServerThreadPool(); // Paper
 diff --git a/src/main/java/net/minecraft/server/PlayerChunkMap.java b/src/main/java/net/minecraft/server/PlayerChunkMap.java
-index a42571cfd2c9c80df27e59db832cb64c2a64e141..cbb1aecc3d5d030da2bfb223bb230093e434adc6 100644
+index 787d66753ab4ee545c1cd4a5d6f9c0060257ee5a..56e95d06f6ea928f7f29fecec5f3e670eebc6ead 100644
 --- a/src/main/java/net/minecraft/server/PlayerChunkMap.java
 +++ b/src/main/java/net/minecraft/server/PlayerChunkMap.java
 @@ -57,6 +57,18 @@ import org.spigotmc.AsyncCatcher;
@@ -218,7 +218,7 @@ index a42571cfd2c9c80df27e59db832cb64c2a64e141..cbb1aecc3d5d030da2bfb223bb230093
      private static final Logger LOGGER = LogManager.getLogger();
      public static final int GOLDEN_TICKET = 33 + ChunkStatus.b();
      // Paper start - faster copying
-@@ -1320,7 +1332,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
+@@ -1246,7 +1258,7 @@ public class PlayerChunkMap extends IChunkLoader implements PlayerChunk.d {
                  return;
              }
              // Paper end
@@ -270,10 +270,10 @@ index d98ac030e205dbb1512ef6b837e2f3fdd208e231..451ea5b703d01664942899ca62cf789e
      }
  }
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 40e87f3043da14b1265fcdadde02bef3b261a9d1..8a28b98d35dcdfbd4bb55a3b7f2d963cf7b997d6 100644
+index a9669bf5b52580c745f747e69c0c6aae273a6bca..aa3302241de6b483d3048d12bacf24bf50967100 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -2548,28 +2548,26 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -2550,28 +2550,26 @@ public class WorldServer extends World implements GeneratorAccessSeed {
  
          // Paper start
          BlockPosition blockposition1 = blockposition.immutableCopy();
