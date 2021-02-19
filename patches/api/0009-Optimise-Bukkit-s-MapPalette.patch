@@ -1,0 +1,154 @@
+From 0000000000000000000000000000000000000000 Mon Sep 17 00:00:00 2001
+From: epserv <admin@epserv.ru>
+Date: Mon, 21 Dec 2020 23:12:15 +0500
+Subject: [PATCH] Optimise Bukkit's MapPalette
+
+
+diff --git a/src/main/java/org/bukkit/map/MapPalette.java b/src/main/java/org/bukkit/map/MapPalette.java
+index 95fe3f4d081053a6cf484e4ef07b474f2dc2ab02..04e1a902a0db732ba69ad60b03a34de69f425071 100644
+--- a/src/main/java/org/bukkit/map/MapPalette.java
++++ b/src/main/java/org/bukkit/map/MapPalette.java
+@@ -23,6 +23,8 @@ public final class MapPalette {
+     }
+ 
+     private static double getDistance(@NotNull Color c1, @NotNull Color c2) {
++        // Yatopia start - faster method
++        /*
+         double rmean = (c1.getRed() + c2.getRed()) / 2.0;
+         double r = c1.getRed() - c2.getRed();
+         double g = c1.getGreen() - c2.getGreen();
+@@ -31,6 +33,19 @@ public final class MapPalette {
+         double weightG = 4.0;
+         double weightB = 2 + (255 - rmean) / 256.0;
+         return weightR * r * r + weightG * g * g + weightB * b * b;
++        */
++        if (c1.getRGB() == c2.getRGB()) { // check if colors are same
++            return 0;
++        }
++        // sqrt( (r2-r1)^2 + (g2-g1)^2 + (b2-b1)^2 )
++        double rdiff = c2.getRed() - c1.getRed(),
++            gdiff = c2.getGreen() - c1.getGreen(),
++            bdiff = c2.getBlue() - c1.getBlue();
++        double rsq = rdiff * rdiff,
++            gsq = gdiff * gdiff,
++            bsq = bdiff * bdiff;
++        return Math.sqrt(rsq + gsq + bsq);
++        // Yatopia end
+     }
+ 
+     @NotNull
+@@ -95,6 +110,51 @@ public final class MapPalette {
+         c(60, 31, 43), c(74, 37, 53), c(86, 44, 62), c(45, 23, 32),
+         c(14, 127, 93), c(17, 155, 114), c(20, 180, 133), c(10, 95, 70)
+     };
++    // Yatopia start
++    @NotNull
++    private static final int[] modifiers = {180, 220, 255, 135}; // vanilla color modifiers
++    @NotNull
++    static Color[] vanillaColors; // vanilla colors
++    @NotNull
++    static Color[][] doubleColors; // two-dimensional array where doubleColors[index] is an array of possible modifications of vanillaColors[index]
++    @NotNull
++    static int[] rgbColors; // an array of rgb values of each color
++
++    static {
++        // getting an array of rgb values of each color
++        rgbColors = java.util.Arrays.stream(colors).mapToInt(Color::getRGB).toArray();
++
++        try {
++            Class<?> materialMapColorClass = MapPalette.class.getClassLoader().loadClass("net.minecraft.server.MaterialMapColor");
++            Object[] vanillaColorObjects = (Object[]) java.util.Arrays.stream(materialMapColorClass.getFields()).filter(f -> f.getType().isArray() && f.getType().getComponentType().equals(materialMapColorClass)).findAny().get().get(null);
++            // get MaterialMapColor.rgb instance field
++            java.lang.reflect.Field rgbField = materialMapColorClass.getDeclaredField("rgb");
++            rgbField.setAccessible(true);
++            // get vanilla colors array as java.awt.Color instances array
++            vanillaColors = java.util.Arrays.stream(vanillaColorObjects).filter(java.util.Objects::nonNull).mapToInt(objColor -> {
++                try {
++                    return rgbField.getInt(materialMapColorClass.cast(objColor));
++                } catch (Exception ex) {
++                    throw new RuntimeException(ex);
++                }
++            }).mapToObj(Color::new).toArray(Color[]::new);
++            // get two-dimensional array where doubleColors[index] is an array of possible modifications of vanillaColors[index]
++            doubleColors = new Color[vanillaColors.length][modifiers.length];
++            for (int i = 0; i < vanillaColors.length; i++) {
++                Color vanillaColor = vanillaColors[i];
++                for (int j = 0; j < modifiers.length; j++) {
++                    int modifier = modifiers[j];
++                    int mr = (vanillaColor.getRed() * modifier) / 255;
++                    int mg = (vanillaColor.getGreen() * modifier) / 255;
++                    int mb = (vanillaColor.getBlue() * modifier) / 255;
++                    doubleColors[i][j] = c(mr, mg, mb);
++                }
++            }
++        } catch (Exception ex) {
++            throw new RuntimeException(ex);
++        }
++    }
++    // Yatopia end
+ 
+     // Interface
+     /**
+@@ -238,6 +298,8 @@ public final class MapPalette {
+         int index = 0;
+         double best = -1;
+ 
++        // Yatopia start - foreach a maximum of 62 colors instead of 236 per pixel
++        /*
+         for (int i = 4; i < colors.length; i++) {
+             double distance = getDistance(color, colors[i]);
+             if (distance < best || best == -1) {
+@@ -245,9 +307,43 @@ public final class MapPalette {
+                 index = i;
+             }
+         }
++         */
++        for (int i = 0; i < vanillaColors.length; i++) {
++            double distance = getDistance(color, vanillaColors[i]);
++            if (distance == 0) {
++                index = i;
++                best = 0;
++                break;
++            }
++            if (distance < best || best == -1) {
++                best = distance;
++                index = i;
++            }
++        }
++
++        if (best == 0) {
++            index = com.google.common.primitives.Ints.indexOf(rgbColors, vanillaColors[index].getRGB());
++            return (byte) (index < 128 ? index : index - 256);
++        }
++
++        Color[] modColors = doubleColors[index];
++        best = -1;
++        for (int i = 0; i < modColors.length; i++) {
++            double distance = getDistance(color, modColors[i]);
++            if (distance == 0) {
++                index = i;
++                break;
++            }
++            if (distance < best || best == -1) {
++                best = distance;
++                index = i;
++            }
++        }
++        index = com.google.common.primitives.Ints.indexOf(rgbColors, modColors[index].getRGB());
++        // Yatopia end
+ 
+         // Minecraft has 143 colors, some of which have negative byte representations
+-        return (byte) (index < 128 ? index : -129 + (index - 127));
++        return (byte) (index < 128 ? index : index - 256); // Yatopia
+     }
+ 
+     /**
+@@ -260,7 +356,7 @@ public final class MapPalette {
+     @Deprecated
+     @NotNull
+     public static Color getColor(byte index) {
+-        if ((index > -21 && index < 0) || index > 127) {
++        if (index > -21 && index < 0) { // Yatopia
+             throw new IndexOutOfBoundsException();
+         } else {
+             // Minecraft has 143 colors, some of which have negative byte representations
