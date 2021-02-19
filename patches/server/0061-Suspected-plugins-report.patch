@@ -36,10 +36,10 @@ index 1dcc3c19b7bb88d0c03dd74b5ab1a3245bb94450..e358e797c87584891d1ffbaf3604c5db
              if ( throwable.getCause() != null )
              {
 diff --git a/src/main/java/net/minecraft/server/NetworkManager.java b/src/main/java/net/minecraft/server/NetworkManager.java
-index 548c62a838848a9183e14f91b21a9dc309d8a3b2..acded2b5ef02c24f52050fcc8f06ccb5a82acfc9 100644
+index 66cd8e53cf8ef2a143bff7aa2ee421a4466083b0..c87afd90990d7d22e314e83b42e8b806a0d26733 100644
 --- a/src/main/java/net/minecraft/server/NetworkManager.java
 +++ b/src/main/java/net/minecraft/server/NetworkManager.java
-@@ -382,6 +382,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -404,6 +404,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
              channelfuture.addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
              // Paper start
              } catch (Exception e) {
@@ -51,7 +51,7 @@ index 548c62a838848a9183e14f91b21a9dc309d8a3b2..acded2b5ef02c24f52050fcc8f06ccb5
                  LOGGER.error("NetworkException: " + player, e);
                  close(new ChatMessage("disconnect.genericReason", "Internal Exception: " + e.getMessage()));;
                  packet.onPacketDispatchFinish(player, null);
-@@ -421,6 +426,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -443,6 +448,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
                          channelfuture1.addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
                          // Paper start
                      } catch (Exception e) {
@@ -63,7 +63,7 @@ index 548c62a838848a9183e14f91b21a9dc309d8a3b2..acded2b5ef02c24f52050fcc8f06ccb5
                          LOGGER.error("NetworkException: " + player, e);
                          close(new ChatMessage("disconnect.genericReason", "Internal Exception: " + e.getMessage()));;
                          packet.onPacketDispatchFinish(player, null);
-@@ -456,6 +466,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
+@@ -478,6 +488,11 @@ public class NetworkManager extends SimpleChannelInboundHandler<Packet<?>> {
                          channelfuture1.addListener(ChannelFutureListener.FIRE_EXCEPTION_ON_FAILURE);
                          // Paper start
                      } catch (Exception e) {
@@ -108,10 +108,10 @@ index 0668d383db1f3a81d1053954d72678c7ac5aecec..7b9f83e63d0f9cd83a246be33af4ab91
                              ChatComponentText chatcomponenttext = new ChatComponentText("Internal server error");
  
 diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
-index 8285cd4b659d11d90df633cb99ab8fd36d293cc1..aaa9a222f755622f604e5980eb2f1c0039411fa4 100644
+index 502efb68ba6f62fd577b19e37687d60e7d4ecf18..b321f2b9104263fd4ad770b359337fd6a59e1e63 100644
 --- a/src/main/java/net/minecraft/server/World.java
 +++ b/src/main/java/net/minecraft/server/World.java
-@@ -988,6 +988,10 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -1019,6 +1019,10 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
                          // Paper start - Prevent tile entity and entity crashes
                          String msg = "TileEntity threw exception at " + tileentity.world.getWorld().getName() + ":" + tileentity.position.getX() + "," + tileentity.position.getY() + "," + tileentity.position.getZ();
                          System.err.println(msg);

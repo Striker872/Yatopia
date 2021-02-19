@@ -132,6 +132,7 @@ This is an overview over all patches that are currently used.
 | server |  Crying obsidian valid for portal frames      | William Blake Galbreath |  |
 | server |  Custom Locale Support      | Zoe |  |
 | server |  Customizable wither health and healing      | jmp |  |
+| server |  Decompile fixes for WorldChunkManagerMultiNoise      | ishland |  |
 | api |  Default permissions      | William Blake Galbreath |  |
 | server |  Delay chunk unloads      | Spottedleaf |  |
 | server |  Despawn rate config options per projectile type      | jmp |  |
@@ -186,6 +187,7 @@ This is an overview over all patches that are currently used.
 | server |  Fix the dead lagging the server      | William Blake Galbreath |  |
 | server |  Fix vanilla command permission handler      | William Blake Galbreath |  |
 | server |  Flying squids! Oh my!      | William Blake Galbreath |  |
+| server |  Force world save      | ishland |  |
 | server |  Full netherite armor grants fire resistance      | BillyGalbreath |  |
 | api |  Full netherite armor grants fire resistance      | BillyGalbreath |  |
 | server |  Giants AI settings      | William Blake Galbreath |  |
@@ -244,18 +246,20 @@ This is an overview over all patches that are currently used.
 | server |  Movement options for armour stands      | Mariell Hoversholm |  |
 | server |  Multi-Threaded Server Ticking Vanilla      | Spottedleaf |  |
 | server |  Multi-Threaded ticking CraftBukkit      | Spottedleaf |  |
+| server |  Multi-threaded RegionFile IO      | ishland |  |
+| server |  Multi-threaded World Upgrade      | ishland |  |
 | server |  Name craft scheduler threads according to the plugin using      | Spottedleaf |  |
 | server |  New nbt cache      | Hugo Planque | ishland |
 | server |  Nuke streams off BlockPosition      | Ivan Pekov |  |
 | server |  Nuke streams off SectionPosition      | Ivan Pekov |  |
-| server |  Optimise EntityInsentient#checkDespawn      | Spottedleaf |  |
 | server |  Optimise WorldServer#notify      | Spottedleaf |  |
 | server |  Optimise chunk tick iteration      | Spottedleaf |  |
-| server |  Optimise closest entity lookup used by AI goals      | Spottedleaf |  |
+| server |  Optimise closest entity lookup      | Spottedleaf |  |
 | server |  Optimise collision checking in player move packet handling      | Spottedleaf |  |
 | server |  Optimise entity hard collision checking      | Spottedleaf |  |
+| server |  Optimise general POI access      | Spottedleaf |  |
+| server |  Optimise nearby player lookups      | Spottedleaf |  |
 | server |  Optimise non-flush packet sending      | Spottedleaf |  |
-| server |  Optimise portals      | Ivan Pekov |  |
 | server |  Optimise tab complete      | Spottedleaf |  |
 | server |  Optimised hallowen checker      | Ivan Pekov |  |
 | server |  Optimize BehaviorController      | MrIvanPlays |  |
@@ -263,7 +267,6 @@ This is an overview over all patches that are currently used.
 | server |  Optimize Villagers      | Ivan Pekov |  |
 | server |  Optimize advancement loading      | Ivan Pekov |  |
 | server |  Optimize inventory API item handling      | Phoenix616 |  |
-| server |  Optimize random calls in chunk ticking      | Paul Sauve |  |
 | server |  Optimize some stuff in WorldServer ticking      | MrIvanPlays |  |
 | server |  Optimize whitelist command for multiple additions / removals      | Ivan Pekov |  |
 | server |  Option for Villager Clerics to farm Nether Wart      | jmp |  |
@@ -275,9 +278,9 @@ This is an overview over all patches that are currently used.
 | server |  PaperPR - Add hex color code support for console logging      | Esophose |  |
 | server |  PaperPR - Config option for Piglins guarding chests      | jmp |  |
 | server |  PaperPR - Fix username connecting with no texture being      | Camotoy |  |
-| api |  PaperPR - PlayerItemCooldownEvent      | KennyTV |  |
 | server |  Per World Spawn Limits      | Chase Whipple |  |
 | server |  Per entity (type) collision settings      | MrIvanPlays | tr7zw |
+| api |  Per player viewdistances      | Spottedleaf |  |
 | server |  Persistent TileEntity Lore and DisplayName      | jmp |  |
 | server |  Phantom flames on swoop      | BillyGalbreath |  |
 | server |  Phantoms attracted to crystals and crystals shoot phantoms      | William Blake Galbreath |  |
@@ -294,7 +297,6 @@ This is an overview over all patches that are currently used.
 | api |  PlayerSetSpawnerTypeWithEggEvent      | William Blake Galbreath |  |
 | server |  Players should not cram to death      | William Blake Galbreath |  |
 | server |  Populator seed controls      | Spottedleaf |  |
-| server |  Port hydrogen      | JellySquid |  |
 | server |  Preload ProtocolLib EnumWrappers      | ishland |  |
 | server |  Prevent light queue overfill when no players are online      | Spottedleaf |  |
 | server |  Prevent long map entry creation in light engine      | Spottedleaf |  |
@@ -302,7 +304,6 @@ This is an overview over all patches that are currently used.
 | server |  Properly handle cancellation of projectile hit event      | Spottedleaf |  |
 | server |  Purpur config files      | William Blake Galbreath |  |
 | api |  Purpur config files      | William Blake Galbreath |  |
-| server |  Queue lighting update only once      | Paul Sauve |  |
 | server |  Rabbit naturally spawn toast and killer      | William Blake Galbreath |  |
 | api |  Rabid Wolf API      | Encode42 |  |
 | server |  Raid cooldown setting      | jmp |  |
@@ -320,6 +321,7 @@ This is an overview over all patches that are currently used.
 | server |  Remove some streams and object allocations      | Phoenix616 |  |
 | server |  Remove streams      | Paul Sauve |  |
 | server |  Remove streams for villager AI      | Spottedleaf |  |
+| server |  Replace player chunk loader system      | Spottedleaf |  |
 | server |  Respect PlayerKickEvent leaveMessage      | Ivan Pekov |  |
 | server |  Revert MC-4 fix      | Spottedleaf |  |
 | server |  Revert getChunkAt(Async) retaining chunks for long periods of      | Spottedleaf |  |
@@ -352,6 +354,7 @@ This is an overview over all patches that are currently used.
 | server |  Suspected plugins report      | ishland |  |
 | api |  Suspected plugins report      | ishland |  |
 | server |  Swap priority of checks in chunk ticking      | Paul Sauve |  |
+| server |  Threaded WorldGen      | ishland |  |
 | server |  Time scoreboard search      | Spottedleaf |  |
 | server |  Timings stuff      | William Blake Galbreath |  |
 | server |  Toggle for Zombified Piglin death always counting as player      | jmp |  |
@@ -377,11 +380,13 @@ This is an overview over all patches that are currently used.
 | server |  Zombie horse naturally spawn      | William Blake Galbreath |  |
 | server |  add config for logging login location      | Simon Gardling |  |
 | server |  dont load chunks for physics      | Aikar |  |
+| server |  fixup! Threaded WorldGen      | ishland |  |
 | server |  lithium DataTrackerMixin      | JellySquid | tr7zw |
 | server |  lithium HashedList      | JellySquid |  |
 | server |  lithium MixinBox      | JellySquid |  |
 | server |  lithium MixinDirection      | JellySquid |  |
 | server |  lithium MixinGoalSelector      | JellySquid |  |
+| server |  lithium MultiNoiseBiomeSourceMixin      | SuperCoder7979 |  |
 | server |  lithium NoiseChunkGeneratorMixin      | JellySquid |  |
 | server |  lithium PerlinNoiseSamplerMixin      | JellySquid | Bud Gidiere |
 | server |  lithium VoronoiBiomeAccessTypeMixin      | JellySquid |  |

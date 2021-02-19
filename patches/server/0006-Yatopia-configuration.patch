@@ -6,7 +6,7 @@ Subject: [PATCH] Yatopia configuration
 also some basic settings that dont deserve a patch
 
 diff --git a/src/main/java/co/aikar/timings/TimingsExport.java b/src/main/java/co/aikar/timings/TimingsExport.java
-index 55b67f1057224101272f9d6023a93872c4423405..3ec187f39250214a7a72b1d7ef7b3e2ec0c09cfa 100644
+index 4b171a2a60e24947e884f8988920f335bd99a471..5431ec9e8794397b3082a1eb49f82767f083a217 100644
 --- a/src/main/java/co/aikar/timings/TimingsExport.java
 +++ b/src/main/java/co/aikar/timings/TimingsExport.java
 @@ -234,6 +234,7 @@ public class TimingsExport extends Thread {
@@ -27,20 +27,15 @@ index 55b67f1057224101272f9d6023a93872c4423405..3ec187f39250214a7a72b1d7ef7b3e2e
              String hostName = "BrokenHost";
              try {
 diff --git a/src/main/java/net/minecraft/server/DedicatedServer.java b/src/main/java/net/minecraft/server/DedicatedServer.java
-index ca3d9dbcbeeb5059a942cae1a5020f0bcc59ac9c..20da9b4333e02a1f24eff0c7bbe17a7231bb3359 100644
+index ca3d9dbcbeeb5059a942cae1a5020f0bcc59ac9c..9c3f16cc4e424fa2293c9b795960110b36b55df4 100644
 --- a/src/main/java/net/minecraft/server/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/DedicatedServer.java
-@@ -181,6 +181,15 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+@@ -181,6 +181,10 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
          com.tuinity.tuinity.config.TuinityConfig.init((java.io.File) options.valueOf("tuinity-settings")); // Tuinity - Server Config
          gg.airplane.AirplaneConfig.load(); // Airplane - config
  
 +        // Yatopia start
-+        try {
-+            org.yatopiamc.yatopia.server.YatopiaConfig.init((java.io.File) options.valueOf("yatopia-settings"));
-+        } catch (Exception e) {
-+            DedicatedServer.LOGGER.error("Unable to load server configuration", e);
-+            return false;
-+        }
++        // Configuration moved to org.bukkit.craftbukkit.Main
 +        // Yatopia end
 +
          this.setPVP(dedicatedserverproperties.pvp);
@@ -67,12 +62,12 @@ index a198bdf26b60caea8c8b105cb0e4b82c0340fede..39280197902b330dd3d39c721cdef744
          if (this.isFireProof() || this.world.isClientSide) {
              this.extinguish();
 diff --git a/src/main/java/net/minecraft/server/PlayerList.java b/src/main/java/net/minecraft/server/PlayerList.java
-index 7db99b6639a0afdd1f68539f6c6a6f48275e5b6b..8b3b0dd9f67a0462737d0c2d61948f33840fceb1 100644
+index 2cd6d119a50445e6d5493b23d6dc9daab16d5536..c109578677394bada37e3df60413a996ef7ff080 100644
 --- a/src/main/java/net/minecraft/server/PlayerList.java
 +++ b/src/main/java/net/minecraft/server/PlayerList.java
 @@ -189,7 +189,7 @@ public abstract class PlayerList {
          // Spigot - view distance
-         playerconnection.sendPacket(new PacketPlayOutLogin(entityplayer.getId(), entityplayer.playerInteractManager.getGameMode(), entityplayer.playerInteractManager.c(), BiomeManager.a(worldserver1.getSeed()), worlddata.isHardcore(), this.server.F(), this.s, worldserver1.getDimensionManager(), worldserver1.getDimensionKey(), this.getMaxPlayers(), worldserver1.getChunkProvider().playerChunkMap.getLoadViewDistance(), flag1, !flag, worldserver1.isDebugWorld(), worldserver1.isFlatWorld())); // Paper - no-tick view distance
+         playerconnection.sendPacket(new PacketPlayOutLogin(entityplayer.getId(), entityplayer.playerInteractManager.getGameMode(), entityplayer.playerInteractManager.c(), BiomeManager.a(worldserver1.getSeed()), worlddata.isHardcore(), this.server.F(), this.s, worldserver1.getDimensionManager(), worldserver1.getDimensionKey(), this.getMaxPlayers(), worldserver1.getChunkProvider().playerChunkMap.playerChunkManager.getLoadDistance(), flag1, !flag, worldserver1.isDebugWorld(), worldserver1.isFlatWorld())); // Paper - no-tick view distance // Tuinity - replace old player chunk management
          entityplayer.getBukkitEntity().sendSupportedChannels(); // CraftBukkit
 -        playerconnection.sendPacket(new PacketPlayOutCustomPayload(PacketPlayOutCustomPayload.a, (new PacketDataSerializer(Unpooled.buffer())).a(this.getServer().getServerModName())));
 +        playerconnection.sendPacket(new PacketPlayOutCustomPayload(PacketPlayOutCustomPayload.a, (new PacketDataSerializer(Unpooled.buffer())).a(org.yatopiamc.yatopia.server.YatopiaConfig.brandName))); // Yatopia
@@ -80,17 +75,17 @@ index 7db99b6639a0afdd1f68539f6c6a6f48275e5b6b..8b3b0dd9f67a0462737d0c2d61948f33
          playerconnection.sendPacket(new PacketPlayOutAbilities(entityplayer.abilities));
          playerconnection.sendPacket(new PacketPlayOutHeldItemSlot(entityplayer.inventory.itemInHandIndex));
 diff --git a/src/main/java/org/bukkit/craftbukkit/CraftServer.java b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-index 289ea917d3b5327e1c7dbffdb9ba171cc5052627..8ad95d3275fef85deb33fc2794f7bc3b72f917ca 100644
+index 289ea917d3b5327e1c7dbffdb9ba171cc5052627..73287b03efce4f37cfd2b6d33a972ab609816a8b 100644
 --- a/src/main/java/org/bukkit/craftbukkit/CraftServer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/CraftServer.java
-@@ -856,6 +856,7 @@ public final class CraftServer implements Server {
-             playerList.getProfileBans().load();
-         } catch (IOException ex) {
-             logger.log(Level.WARNING, "Failed to load banned-players.json, " + ex.getMessage());
+@@ -863,6 +863,7 @@ public final class CraftServer implements Server {
+         com.tuinity.tuinity.config.TuinityConfig.init((File) console.options.valueOf("tuinity-settings")); // Tuinity - Server Config
+         net.pl3x.purpur.PurpurConfig.init((File) console.options.valueOf("purpur-settings")); // Purpur
+         de.minebench.origami.OrigamiConfig.init((File) console.options.valueOf("origami-settings")); // Origami - Server Config
 +        org.yatopiamc.yatopia.server.YatopiaConfig.init((File) console.options.valueOf("yatopia-settings")); // Yatopia
-         }
- 
-         org.spigotmc.SpigotConfig.init((File) console.options.valueOf("spigot-settings")); // Spigot
+         for (WorldServer world : console.getWorlds()) {
+             world.worldDataServer.setDifficulty(config.difficulty);
+             world.setSpawnFlags(config.spawnMonsters, config.spawnAnimals);
 @@ -2321,6 +2322,13 @@ public final class CraftServer implements Server {
              org.spigotmc.RestartCommand.restart();
          }
@@ -106,7 +101,7 @@ index 289ea917d3b5327e1c7dbffdb9ba171cc5052627..8ad95d3275fef85deb33fc2794f7bc3b
          public void broadcast(BaseComponent component) {
              for (Player player : getOnlinePlayers()) {
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index e51dcb259d511c369806a83b96c2820f316e1401..e65f4b990c24e6cee850521f9ad02c2bf4c85ad6 100644
+index e51dcb259d511c369806a83b96c2820f316e1401..c2193e6faf762e3df1c37fe21712fe123864755c 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
 @@ -162,6 +162,14 @@ public class Main {
@@ -124,6 +119,14 @@ index e51dcb259d511c369806a83b96c2820f316e1401..e65f4b990c24e6cee850521f9ad02c2b
                  // Paper start
                  acceptsAll(asList("server-name"), "Name of the server")
                          .withRequiredArg()
+@@ -297,6 +305,7 @@ public class Main {
+                 System.setProperty( "library.jansi.version", "Paper" ); // Paper - set meaningless jansi version to prevent git builds from crashing on Windows
+                 de.minebench.origami.OrigamiConfig.init((java.io.File) options.valueOf("origami-settings")); // Origami - Server Config
+                 System.out.println("Loading libraries, please wait...");
++                org.yatopiamc.yatopia.server.YatopiaConfig.init((java.io.File) options.valueOf("yatopia-settings")); // Yatopia - Server Configuration
+                 net.minecraft.server.Main.main(options);
+             } catch (Throwable t) {
+                 t.printStackTrace();
 diff --git a/src/main/java/org/yatopiamc/yatopia/server/YatopiaConfig.java b/src/main/java/org/yatopiamc/yatopia/server/YatopiaConfig.java
 new file mode 100644
 index 0000000000000000000000000000000000000000..f5a43e607f9c13e07a0f5e7e139eed93f159185b

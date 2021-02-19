@@ -39,12 +39,12 @@ index 15aa603a771c327879a4088609850fb86c6347bd..553d6fafbcabafeb008fcf5b60adb8d1
          for (final Method method : clazz.getDeclaredMethods()) {
              if (method.getReturnType() != void.class || method.getParameterCount() != 0 ||
 diff --git a/src/main/java/net/minecraft/server/DedicatedServer.java b/src/main/java/net/minecraft/server/DedicatedServer.java
-index 20da9b4333e02a1f24eff0c7bbe17a7231bb3359..4bacbd38bc0b39724f1c07ec5a266942d2d1ed81 100644
+index 9c3f16cc4e424fa2293c9b795960110b36b55df4..c2f749e73cd9e175b019ed720a5021f411213624 100644
 --- a/src/main/java/net/minecraft/server/DedicatedServer.java
 +++ b/src/main/java/net/minecraft/server/DedicatedServer.java
-@@ -189,7 +189,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
-             return false;
-         }
+@@ -184,7 +184,7 @@ public class DedicatedServer extends MinecraftServer implements IMinecraftServer
+         // Yatopia start
+         // Configuration moved to org.bukkit.craftbukkit.Main
          // Yatopia end
 -
 +        de.minebench.origami.OrigamiConfig.init((java.io.File) options.valueOf("origami-settings"));
@@ -52,7 +52,7 @@ index 20da9b4333e02a1f24eff0c7bbe17a7231bb3359..4bacbd38bc0b39724f1c07ec5a266942
          this.setAllowFlight(dedicatedserverproperties.allowFlight);
          this.setResourcePack(dedicatedserverproperties.resourcePack, this.ba());
 diff --git a/src/main/java/org/bukkit/craftbukkit/Main.java b/src/main/java/org/bukkit/craftbukkit/Main.java
-index e65f4b990c24e6cee850521f9ad02c2bf4c85ad6..756be0886856aabc31e436f82948d3d069f66fef 100644
+index c2193e6faf762e3df1c37fe21712fe123864755c..4a647eff3aad8e2ee19dd96e0483a702946220e3 100644
 --- a/src/main/java/org/bukkit/craftbukkit/Main.java
 +++ b/src/main/java/org/bukkit/craftbukkit/Main.java
 @@ -303,7 +303,7 @@ public class Main {
@@ -62,5 +62,5 @@ index e65f4b990c24e6cee850521f9ad02c2bf4c85ad6..756be0886856aabc31e436f82948d3d0
 -                de.minebench.origami.OrigamiConfig.init((java.io.File) options.valueOf("origami-settings")); // Origami - Server Config
 +                //de.minebench.origami.OrigamiConfig.init((java.io.File) options.valueOf("origami-settings")); // Origami - Server Config // Yatopia - no load here for u
                  System.out.println("Loading libraries, please wait...");
+                 org.yatopiamc.yatopia.server.YatopiaConfig.init((java.io.File) options.valueOf("yatopia-settings")); // Yatopia - Server Configuration
                  net.minecraft.server.Main.main(options);
-             } catch (Throwable t) {

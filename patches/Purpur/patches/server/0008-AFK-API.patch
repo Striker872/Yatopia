@@ -25,7 +25,7 @@ index 59b00c78f8d92bcceca35d0f25e4d94b3ebdc6e2..e0cf2af8fcbfc66fc32aa8e693b62160
          super(EntityTypes.PLAYER, world);
          this.bL = ItemStack.b;
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index 173a210392d71cdfc551f095dc0d9c9040d22d3f..7d7a512ad752e15fbe0edce47da1da76c01df3b3 100644
+index 7d957ba0a1244b123f94abdc89390dfa3af5cfc1..7225be9f7f741035bdc6d3f367a74d6ca3af9e01 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -1927,8 +1927,54 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -84,7 +84,7 @@ index 173a210392d71cdfc551f095dc0d9c9040d22d3f..7d7a512ad752e15fbe0edce47da1da76
          return this.serverStatisticManager;
      }
 diff --git a/src/main/java/net/minecraft/server/IEntityAccess.java b/src/main/java/net/minecraft/server/IEntityAccess.java
-index 93f2ac996904ddefed04704e554209d047faa59f..b1a546c9ef91169591ed5a71ac1c97dbc84afc03 100644
+index ad286848ddb7803640ef7eeea46b58473dd1d0c4..2e514b8291a544a88667fbca2389bde4c2ecb109 100644
 --- a/src/main/java/net/minecraft/server/IEntityAccess.java
 +++ b/src/main/java/net/minecraft/server/IEntityAccess.java
 @@ -174,28 +174,18 @@ public interface IEntityAccess {
@@ -193,10 +193,10 @@ index 4185ec46435ddf48d9e25c4d71ac4e14eb6301cf..1d810a9b23d236493db121dde92c7ebc
                                      if (from.getX() != Double.MAX_VALUE) {
                                          Location oldTo = to.clone();
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 9a8a1e05a60bca77adc904017ae70ef5f629df0b..cc1182be1f9b01ab5d8e2499f7f15ad8798de3d3 100644
+index d2b50cdc43c737d9fdfdcd7838de24cbca2017e4..9759e5cba57d14c15f78f12985a516131800d004 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
-@@ -790,7 +790,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -887,7 +887,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
          // CraftBukkit end
  
          if (this.everyoneSleeping && this.players.stream().noneMatch((entityplayer) -> {
@@ -205,7 +205,7 @@ index 9a8a1e05a60bca77adc904017ae70ef5f629df0b..cc1182be1f9b01ab5d8e2499f7f15ad8
          })) {
              // CraftBukkit start
              long l = this.worldData.getDayTime() + 24000L;
-@@ -1127,7 +1127,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
+@@ -1224,7 +1224,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {
              while (iterator.hasNext()) {
                  EntityPlayer entityplayer = (EntityPlayer) iterator.next();
  
@@ -263,10 +263,10 @@ index 361f7857e461578e90cb71e15027dadaf794cb69..2578a4677d1ee060f687be531e696b7c
 +    }
  }
 diff --git a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-index ed7b91bf703c7e7d5cbe323d9ab1c299c33ebad1..e319f3b1282af8019ae706f46e3978e789fbc877 100644
+index 9541a2fdc8d8acc521d04216b9e9f5c628d09f48..29fca5d7950843772736dd346fbb75f1a9858813 100644
 --- a/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
 +++ b/src/main/java/org/bukkit/craftbukkit/entity/CraftPlayer.java
-@@ -2222,4 +2222,21 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
+@@ -2277,4 +2277,21 @@ public class CraftPlayer extends CraftHumanEntity implements Player {
          return spigot;
      }
      // Spigot end

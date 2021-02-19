@@ -38,7 +38,7 @@ index 3f3be1b2ded6ad118ae7860c1231c7affc0715b6..48174610518af8d053149e609c1b140e
              // CraftBukkit start - fire ExplosionPrimeEvent
              ExplosionPrimeEvent event = new ExplosionPrimeEvent((org.bukkit.entity.Explosive) this.getBukkitEntity());
 diff --git a/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java b/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java
-index 73ff19d8aed27e6717c201ef59b17f4b26056aa4..99853bbf5d5a173bb109bfb863476464cb0bee1f 100644
+index 24093ddf2cf056dd516e056c922d4b7247230a5c..42fd350ee9b7c81278ace0b7c02ff8f071ef71b0 100644
 --- a/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java
 +++ b/src/main/java/net/pl3x/purpur/PurpurWorldConfig.java
 @@ -866,6 +866,7 @@ public class PurpurWorldConfig {

@@ -3,7 +3,6 @@ From: William Blake Galbreath <Blake.Galbreath@GMail.com>
 Date: Sun, 5 Jul 2020 22:19:49 -0500
 Subject: [PATCH] Ridables
 
-test
 
 diff --git a/src/main/java/net/minecraft/server/AttributeDefaults.java b/src/main/java/net/minecraft/server/AttributeDefaults.java
 index 8f95a4e49714e352b9cdf82d7f4acdd3459978ad..ab05b5e403cf54756aa35891dc0d950187a9d4ec 100644
@@ -1185,7 +1184,7 @@ index 1a102816921fa3b40f6d364bb826db4459f68eb2..125eab60f2b4657e52a71eddf7586c57
  
          @Override
 diff --git a/src/main/java/net/minecraft/server/EntityEnderDragon.java b/src/main/java/net/minecraft/server/EntityEnderDragon.java
-index a5a2182455542bb8fd62941bd0da2f38ba698f35..17a9217ed2d1677371d12b4ab0552378cd71652f 100644
+index 99af71f1c0c63c9196d8b92c427b5124936474e7..f964b5a669700bf35faaf0ea2b6463da903c8022 100644
 --- a/src/main/java/net/minecraft/server/EntityEnderDragon.java
 +++ b/src/main/java/net/minecraft/server/EntityEnderDragon.java
 @@ -46,6 +46,7 @@ public class EntityEnderDragon extends EntityInsentient implements IMonster {
@@ -2201,7 +2200,7 @@ index c57bf5091430709778dc21d70c8a32819c9d6639..b0a5c36d1132e2558a1fefbd9f8dd264
          this.targetSelector.a(2, (new PathfinderGoalNearestAttackableTarget<>(this, EntityHuman.class, true)).a(300));
          this.targetSelector.a(3, (new PathfinderGoalNearestAttackableTarget<>(this, EntityVillagerAbstract.class, false)).a(300));
 diff --git a/src/main/java/net/minecraft/server/EntityInsentient.java b/src/main/java/net/minecraft/server/EntityInsentient.java
-index fcc247e86992d1e1a94438ee4f0a70182390cc62..d9b00a24b378b74e126518da9142249d2ad62c55 100644
+index ee005e482396f8ff7e46a7ca981c843a76bdda71..b64278a8e349467305b75b2180a4a423ed49d7e4 100644
 --- a/src/main/java/net/minecraft/server/EntityInsentient.java
 +++ b/src/main/java/net/minecraft/server/EntityInsentient.java
 @@ -30,7 +30,7 @@ public abstract class EntityInsentient extends EntityLiving {
@@ -3213,7 +3212,7 @@ index a3a428da99574c485fcf2b8c7944e0d8354146ee..cf7de0127166f6175a6246062c8664e6
          this.targetSelector.a(2, new PathfinderGoalNearestAttackableTarget<>(this, EntityHuman.class, true));
          this.targetSelector.a(3, new PathfinderGoalNearestAttackableTarget<>(this, EntityVillagerAbstract.class, false));
 diff --git a/src/main/java/net/minecraft/server/EntityPlayer.java b/src/main/java/net/minecraft/server/EntityPlayer.java
-index 14a3e6f1f60770eea0477f863eed7abe48880a84..cdc0145f569f58b8f8b9da0e9ce5e1b5b4489fe7 100644
+index e91ce9eccb29b721077d5aab6b6a5cb915696557..dfc6c115f4a4d0f4b0789bbb3a7af59a0b8475c5 100644
 --- a/src/main/java/net/minecraft/server/EntityPlayer.java
 +++ b/src/main/java/net/minecraft/server/EntityPlayer.java
 @@ -509,6 +509,15 @@ public class EntityPlayer extends EntityHuman implements ICrafting {
@@ -4335,7 +4334,7 @@ index ed6a47ad2fd973695fbb151d1a44000ec3639e54..ac75ed3e2e0e0cd8f91de9ff188e1735
                  Vec3D vec3d = new Vec3D(this.b - EntityVex.this.locX(), this.c - EntityVex.this.locY(), this.d - EntityVex.this.locZ());
                  double d0 = vec3d.f();
 diff --git a/src/main/java/net/minecraft/server/EntityVillager.java b/src/main/java/net/minecraft/server/EntityVillager.java
-index a0bfef54c853d57c9a5c6d3f9f19591649295357..548a993a1de939396d075f9176e0d60eebc7b010 100644
+index eb8c84977bc757494c08588d2566f402a17357fa..bc82946d8869f89a9624bebf8dc1099d0f6bd126 100644
 --- a/src/main/java/net/minecraft/server/EntityVillager.java
 +++ b/src/main/java/net/minecraft/server/EntityVillager.java
 @@ -75,8 +75,19 @@ public class EntityVillager extends EntityVillagerAbstract implements Reputation
@@ -4379,10 +4378,10 @@ index a0bfef54c853d57c9a5c6d3f9f19591649295357..548a993a1de939396d075f9176e0d60e
                          this.h(entityhuman);
                      }
 diff --git a/src/main/java/net/minecraft/server/EntityVillagerTrader.java b/src/main/java/net/minecraft/server/EntityVillagerTrader.java
-index 96dda6a14fd17509e9bcb72cc7e9c8532c6a036b..3ea66955df304fd13aac2cf9bb93ea156558ae57 100644
+index 298d2b6f6e352bb82f3a5a307466bb6e8f47d9d3..d41960088bb8bc6a7fece0ef152403c43a768dde 100644
 --- a/src/main/java/net/minecraft/server/EntityVillagerTrader.java
 +++ b/src/main/java/net/minecraft/server/EntityVillagerTrader.java
-@@ -23,6 +23,7 @@ public class EntityVillagerTrader extends EntityVillagerAbstract {
+@@ -24,6 +24,7 @@ public class EntityVillagerTrader extends EntityVillagerAbstract {
      @Override
      protected void initPathfinder() {
          this.goalSelector.a(0, new PathfinderGoalFloat(this));
@@ -4390,7 +4389,7 @@ index 96dda6a14fd17509e9bcb72cc7e9c8532c6a036b..3ea66955df304fd13aac2cf9bb93ea15
          this.goalSelector.a(0, new PathfinderGoalUseItem<>(this, PotionUtil.a(new ItemStack(Items.POTION), Potions.INVISIBILITY), SoundEffects.ENTITY_WANDERING_TRADER_DISAPPEARED, (entityvillagertrader) -> {
              return this.world.isNight() && !entityvillagertrader.isInvisible();
          }));
-@@ -48,6 +49,16 @@ public class EntityVillagerTrader extends EntityVillagerAbstract {
+@@ -49,6 +50,16 @@ public class EntityVillagerTrader extends EntityVillagerAbstract {
      }
  
      // Purpur - start
@@ -4407,7 +4406,7 @@ index 96dda6a14fd17509e9bcb72cc7e9c8532c6a036b..3ea66955df304fd13aac2cf9bb93ea15
      @Override
      public boolean a(EntityHuman entityhuman) {
          return world.purpurConfig.villagerTraderCanBeLeashed && !this.isLeashed();
-@@ -75,8 +86,9 @@ public class EntityVillagerTrader extends EntityVillagerAbstract {
+@@ -76,8 +87,9 @@ public class EntityVillagerTrader extends EntityVillagerAbstract {
              }
  
              if (this.getOffers().isEmpty()) {
@@ -4488,7 +4487,7 @@ index ca3c5150bcfe2a92b49ad5a27c23dd37a7054fbb..323d79a99402b0f6952b4fb873170069
          this.targetSelector.a(2, this.br);
          this.targetSelector.a(3, this.bs);
 diff --git a/src/main/java/net/minecraft/server/EntityWither.java b/src/main/java/net/minecraft/server/EntityWither.java
-index 2e623ef9be036ea467e9e41817c2eced018f8f93..59382230aec623f7de889c30a0ed6a2a3fa35a05 100644
+index 51abf34d4b8e5e7832a55fb4bf4fdf8982c2de1c..df764dc3a6d2190073df9ca9acb473cc976e3faf 100644
 --- a/src/main/java/net/minecraft/server/EntityWither.java
 +++ b/src/main/java/net/minecraft/server/EntityWither.java
 @@ -32,6 +32,7 @@ public class EntityWither extends EntityMonster implements IRangedEntity {
@@ -5000,10 +4999,10 @@ index b2c64b31440389db5abe2322f7e31b328f590f6c..515ba50aec81497d27297e4b6c642e86
          Vec3D vec3d = entity.getMot();
          World world = entity.world;
 diff --git a/src/main/java/net/minecraft/server/Vec3D.java b/src/main/java/net/minecraft/server/Vec3D.java
-index 5af554870bcf36e47aef43b966b141b9eda6c4d5..c59305ef7dd7847e204d4c4ed79758bf9d66e91e 100644
+index 7190316a38e6b4edf5501bfedbb12be79e990797..4469fdc932d725b8e6fa4f8e3ec15c22a88ca5e7 100644
 --- a/src/main/java/net/minecraft/server/Vec3D.java
 +++ b/src/main/java/net/minecraft/server/Vec3D.java
-@@ -39,6 +39,7 @@ public class Vec3D implements IPosition {
+@@ -45,6 +45,7 @@ public class Vec3D implements IPosition {
          return new Vec3D(vec3d.x - this.x, vec3d.y - this.y, vec3d.z - this.z);
      }
  
@@ -5011,7 +5010,7 @@ index 5af554870bcf36e47aef43b966b141b9eda6c4d5..c59305ef7dd7847e204d4c4ed79758bf
      public Vec3D d() {
          double d0 = (double) MathHelper.sqrt(this.x * this.x + this.y * this.y + this.z * this.z);
  
-@@ -98,6 +99,7 @@ public class Vec3D implements IPosition {
+@@ -104,6 +105,7 @@ public class Vec3D implements IPosition {
          return d3 * d3 + d4 * d4 + d5 * d5;
      }
  
@@ -5019,7 +5018,7 @@ index 5af554870bcf36e47aef43b966b141b9eda6c4d5..c59305ef7dd7847e204d4c4ed79758bf
      public Vec3D a(double d0) {
          return this.d(d0, d0, d0);
      }
-@@ -106,6 +108,7 @@ public class Vec3D implements IPosition {
+@@ -112,6 +114,7 @@ public class Vec3D implements IPosition {
          return this.d(vec3d.x, vec3d.y, vec3d.z);
      }
  
@@ -5028,10 +5027,10 @@ index 5af554870bcf36e47aef43b966b141b9eda6c4d5..c59305ef7dd7847e204d4c4ed79758bf
          return new Vec3D(this.x * d0, this.y * d1, this.z * d2);
      }
 diff --git a/src/main/java/net/minecraft/server/World.java b/src/main/java/net/minecraft/server/World.java
-index 1ac2e9f373ae5b4250ff9faf726a962a739d6faf..97cc98af100edfad82668200759a5eed8fc67558 100644
+index d86a23c6febc638080c0d26857839918db22ce93..af46e9ccfcc24e8222fdd49d66c3ba2057633021 100644
 --- a/src/main/java/net/minecraft/server/World.java
 +++ b/src/main/java/net/minecraft/server/World.java
-@@ -1650,5 +1650,10 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
+@@ -1681,5 +1681,10 @@ public abstract class World implements GeneratorAccess, AutoCloseable {
      public boolean isTheEnd() {
          return getWorld().getEnvironment() == org.bukkit.World.Environment.THE_END;
      }
@@ -5043,7 +5042,7 @@ index 1ac2e9f373ae5b4250ff9faf726a962a739d6faf..97cc98af100edfad82668200759a5eed
      // Purpur end
  }
 diff --git a/src/main/java/net/minecraft/server/WorldServer.java b/src/main/java/net/minecraft/server/WorldServer.java
-index 138f5c577391980f2b218b25a4251ac853bb9bad..c451e71601fc48294f9161ca5ef8442d31ad96f7 100644
+index dc15d19fb75cd0988235ce193ac7f03c35d713c7..9163ee821cc91f6ceb317fb4914e0394564a821b 100644
 --- a/src/main/java/net/minecraft/server/WorldServer.java
 +++ b/src/main/java/net/minecraft/server/WorldServer.java
 @@ -102,6 +102,7 @@ public class WorldServer extends World implements GeneratorAccessSeed {

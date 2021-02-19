@@ -5,7 +5,7 @@ Subject: [PATCH] Changeable Mob Left Handed Chance
 
 
 diff --git a/src/main/java/net/minecraft/server/EntityInsentient.java b/src/main/java/net/minecraft/server/EntityInsentient.java
-index d9b00a24b378b74e126518da9142249d2ad62c55..de977e80eb6cad74cbea3a00702ef804693374f0 100644
+index 00070f39dfc7d0117d7abf00ff718c82e438cdc1..53c5fa2e67bb467d77a49b3d597486364d36a24f 100644
 --- a/src/main/java/net/minecraft/server/EntityInsentient.java
 +++ b/src/main/java/net/minecraft/server/EntityInsentient.java
 @@ -1137,7 +1137,7 @@ public abstract class EntityInsentient extends EntityLiving {
