@@ -8,6 +8,8 @@ This is an overview over all patches that are currently used.
 
 | Side | Patch        | Author           | CoAuthors  |
 | ----- | ------------- |:-------------:| -----:|
+| server |  (AI-Improvements) Optimized tan for ControllerLook      | bl4ckscor3 |  |
+| server |  (Dionysus) CompactSineLUT      | nopjmp |  |
 | server |  AFK API      | William Blake Galbreath |  |
 | api |  AFK API      | William Blake Galbreath |  |
 | server |  Ability to re-add farmland mechanics from Alpha      | Yive |  |
@@ -299,6 +301,9 @@ This is an overview over all patches that are currently used.
 | api |  PlayerSetSpawnerTypeWithEggEvent      | William Blake Galbreath |  |
 | server |  Players should not cram to death      | William Blake Galbreath |  |
 | server |  Populator seed controls      | Spottedleaf |  |
+| server |  Port Cadmium      | Lucy-t |  |
+| server |  Port LazyDFU      | Andrew Steinborn |  |
+| server |  Port hydrogen      | JellySquid |  |
 | server |  Preload ProtocolLib EnumWrappers      | ishland |  |
 | server |  Prevent light queue overfill when no players are online      | Spottedleaf |  |
 | server |  Prevent long map entry creation in light engine      | Spottedleaf |  |
@@ -383,6 +388,7 @@ This is an overview over all patches that are currently used.
 | server |  add config for logging login location      | Simon Gardling |  |
 | server |  dont load chunks for physics      | Aikar |  |
 | server |  fixup! Threaded WorldGen      | ishland |  |
+| server |  jafama fast math      | Simon Gardling |  |
 | server |  lithium DataTrackerMixin      | JellySquid | tr7zw |
 | server |  lithium HashedList      | JellySquid |  |
 | server |  lithium MixinBox      | JellySquid |  |
@@ -395,3 +401,4 @@ This is an overview over all patches that are currently used.
 | server |  lithium enum_values      | JellySquid |  |
 | server |  lithium reduce allocations      | JellySquid | Mykyta Komarnytskyy |
 | server |  lithium: cache chunk gen sea level      | SuperCoder7979 |  |
+| server |  replace Math.sin and Math.cos with MathHelper      | Simon Gardling |  |
