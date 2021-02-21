@@ -271,6 +271,7 @@ This is an overview over all patches that are currently used.
 | server |  Optimize Villagers      | Ivan Pekov |  |
 | server |  Optimize advancement loading      | Ivan Pekov |  |
 | server |  Optimize inventory API item handling      | Phoenix616 |  |
+| server |  Optimize random calls in chunk ticking      | Paul Sauve |  |
 | server |  Optimize some stuff in WorldServer ticking      | MrIvanPlays |  |
 | server |  Optimize whitelist command for multiple additions / removals      | Ivan Pekov |  |
 | server |  Option for Villager Clerics to farm Nether Wart      | jmp |  |
@@ -305,6 +306,7 @@ This is an overview over all patches that are currently used.
 | server |  Port LazyDFU      | Andrew Steinborn |  |
 | server |  Port hydrogen      | JellySquid |  |
 | server |  Preload ProtocolLib EnumWrappers      | ishland |  |
+| server |  Prevent grindstones from overstacking items      | chickeneer |  |
 | server |  Prevent light queue overfill when no players are online      | Spottedleaf |  |
 | server |  Prevent long map entry creation in light engine      | Spottedleaf |  |
 | server |  Prevent unload() calls removing tickets for sync loads      | Spottedleaf |  |
@@ -345,6 +347,7 @@ This is an overview over all patches that are currently used.
 | server |  Signs editable on right click      | William Blake Galbreath |  |
 | server |  Silk touch spawners      | William Blake Galbreath |  |
 | server |  Simpler ShapelessRecipes comparison for Vanilla      | Paul Sauve |  |
+| server |  Skip POI finding if stuck in vehicle      | Paul Sauve |  |
 | server |  Skip events if there&#39;s no listeners      | William Blake Galbreath |  |
 | server |  Smarter statistics ticking      | Mykyta Komarnytskyy |  |
 | server |  Smol entity optimisations      | Ivan Pekov |  |
@@ -389,6 +392,7 @@ This is an overview over all patches that are currently used.
 | server |  dont load chunks for physics      | Aikar |  |
 | server |  fixup! Threaded WorldGen      | ishland |  |
 | server |  jafama fast math      | Simon Gardling |  |
+| server |  fixup! Threaded WorldGen      | ishland |  |
 | server |  lithium DataTrackerMixin      | JellySquid | tr7zw |
 | server |  lithium HashedList      | JellySquid |  |
 | server |  lithium MixinBox      | JellySquid |  |
